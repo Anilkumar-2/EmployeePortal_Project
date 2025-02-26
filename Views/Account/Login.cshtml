@@ -1,0 +1,18 @@
+﻿@{
+}
+@model LoginViewModel
+<div class="container">
+    <h2>Login</h2>
+    <form asp-action="SignIn" method="post">
+        <div>
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="Password">Passowrd</label>
+            <input type="password" asp-for="Password" class="form-control" />
+            <a href="@Url.Action("ForgotPasswordView", "Account")" style="color:dodgerblue; cursor: pointer;">Forgot Password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

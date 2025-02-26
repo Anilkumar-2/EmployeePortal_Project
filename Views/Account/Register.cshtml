@@ -1,0 +1,76 @@
+﻿@{
+}
+@model EmployeeManagementPortal.DTO.EmployeeDTO
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Registration</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="registration-form">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <label>Name:</label>
+                <input type="text" name="Ename" id="Ename" required />
+                <br />
+
+                <label>Email:</label>
+                <input type="email" name="Email" id="Email" required />
+                <br />
+
+                <label>Department:</label>
+                <input type="number" name="DepartmentId" id="DepartmentId" />
+                <br />
+
+                <label>Role:</label>
+                <input type="number" name="RoleId" id="RoleId" />
+                <br />
+
+                <label>Password:</label>
+                <input type="password" name="Password" id="Password" required />
+                <br />
+
+                <button type="submit" id="submitBtn">Register</button>
+            </form>
+            <div id="message"></div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $("#registerForm").submit(function (event) {
+                    event.preventDefault();
+
+                    const formData = {
+                        Ename: $("#Ename").val(),
+                        Email: $("#Email").val(),
+                        DepartmentId: $("#DepartmentId").val(),
+                        RoleId: $("#RoleId").val(),
+                        Password: $("#Password").val()
+                    };
+
+                    $.ajax({
+                        url: '@Url.Action("CreateUser", "Account")',
+                        type: 'POST',
+                        data: JSON.stringify(formData),
+                        contentType: 'application/json',
+                        success: function (response) {
+                            if (response.success) {
+                                $("#message").html('<p style="color:green;">' + response.message + '</p>');
+
+                                // Navigate to home page without refreshing
+                                window.location.href = '@Url.Action("Index", "Home")';
+                            } else {
+                                $("#message").html('<p style="color:red;">' + response.message + '</p>');
+                            }
+                        },
+                        error: function () {
+                            $("#message").html('<p style="color:red;">An error occurred. Please try again later.</p>');
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

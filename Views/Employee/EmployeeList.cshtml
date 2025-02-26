@@ -1,0 +1,49 @@
+﻿@{
+}
+@model List<EmployeeViewModel>
+<h2 class="table">All Employees</h2>
+<a href="@Url.Action("CreateEmployee")" class="btn btn-success">Add Employee</a>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Id</td>
+                <td>@emp.EmployeeName</td>
+                <td>@emp.Email</td>
+                <td>@emp.Department</td>
+                <td> <a class="btn btn-primary" href="@Url.Action("GetEmployeeById","Employee", new { id=emp.Id})">View</a> </td>
+                <td>
+                    <button class="btn btn-primary" onclick="deleteEmployee(@emp.Id)">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function deleteEmployee(employeeId) {
+        console.warn(employeeId)
+        $.ajax({
+            url: '@Url.Action("DeleteById", "Employee")' + '?Id=' + employeeId,
+            type: 'Post',
+            //data: { id: employeeId },
+            success: function (response) {
+                alert('Employee deleted successfully');
+                $('tr').has('button[onclick="deleteEmployee(' + employeeId + ')"]').remove();
+            },
+            error: function (xhr, status, error) {
+                alert('Error deleting employee: ' + xhr.status + ' ' + error);
+            }
+        });
+    }
+</script>

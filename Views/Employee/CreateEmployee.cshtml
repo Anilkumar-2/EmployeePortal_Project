@@ -1,0 +1,39 @@
+﻿@{
+}
+@model Employee
+<div class="container">
+    <h2>Add Employee</h2>
+    <form asp-action="AddEmployee" method="post">
+        <div>
+            <label asp-for="Ename">Name</label><br />
+            <input asp-for="Ename" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="Email">Email</label><br />
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="Password">Password</label><br />
+            <input type="password" asp-for="Password" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="Department">Department</label><br />
+            <input asp-for="Department" class="form-control" />
+            <select asp-for="RoleId" class="form-control">
+                <option value="">Choose Department</option>
+                <option value="1">Management</option>
+                <option value="2">ITS</option>
+                <option value="2">Development</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="RoleId">Role</label><br />
+            <select asp-for="RoleId" class="form-control">
+                <option value="">Choose role</option>
+                <option value="1">Admin</option>
+                <option value="2">User</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
