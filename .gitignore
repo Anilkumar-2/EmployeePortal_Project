@@ -3,3 +3,10 @@
 ################################################################################
 
 /.vs/EmployeeManagementPortal
+
+# Ignore Visual Studio build files
+bin/
+obj/
+*.pdb
+*.exe
+*.dll
