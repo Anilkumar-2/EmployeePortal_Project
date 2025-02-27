@@ -60,7 +60,7 @@
                 RoleId = employee.RoleId
             };
 
-            SendEmail(employee.Email, employee.Ename);
+            //SendEmail(employee.Email, employee.Ename);
 
             _context.Employees.Add(e);
             _context.SaveChanges();
