@@ -4,4 +4,9 @@
 
 /.vs/EmployeeManagementPortal
 
-.dll
+# Ignore Visual Studio build files
+bin/
+obj/
+*.pdb
+*.exe
+*.dll
